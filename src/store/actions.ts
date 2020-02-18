@@ -1,9 +1,18 @@
-import {ADD_POST_COMPLETED, GET_POSTS, GET_POSTS_COMPLETED, GET_POSTS_FAILED, Post, PostActionTypes} from './types'
+import {
+    ADD_POST,
+    ADD_POST_COMPLETED,
+    ADD_POST_FAILED,
+    GET_POSTS,
+    GET_POSTS_COMPLETED,
+    GET_POSTS_FAILED,
+    Post,
+    PostActionTypes
+} from './types'
 
-export function addPost(newPost: Post): PostActionTypes {
+export function addPost(post: Post): PostActionTypes {
     return {
-        type: ADD_POST_COMPLETED,
-        payload: newPost
+        type: ADD_POST,
+        payload: post
     }
 }
 
@@ -23,6 +32,21 @@ export function getPostsCompleted(posts: Post[]): PostActionTypes {
 export function getPostsFailed(message: string): PostActionTypes {
     return {
         type: GET_POSTS_FAILED,
+        payload: message
+    }
+}
+
+
+export function addPostCompleted(post: Post): PostActionTypes {
+    return {
+        type: ADD_POST_COMPLETED,
+        payload: post
+    }
+}
+
+export function addPostFailed(message: string): PostActionTypes {
+    return {
+        type: ADD_POST_FAILED,
         payload: message
     }
 }

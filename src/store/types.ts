@@ -1,28 +1,31 @@
+import { Action } from 'redux';
+
 export interface Post {
-    _id: string
+    _id?: string
     title: string,
     author: string,
-    created_time: Date,
+    created_time?: Date,
     content: string,
-    imageUrl: string
+    imageUrl?: string
 }
 
 export type FeedState = Readonly<{
     posts: Post[]
 }>;
 
-export const ADD_POST_COMPLETED = 'ADD_POST';
+export const ADD_POST = 'ADD_POST';
+export const ADD_POST_COMPLETED = 'ADD_POST_COMPLETED';
+export const ADD_POST_FAILED = 'ADD_POST_FAILED';
 export const GET_POSTS_COMPLETED = 'GET_POSTS_COMPLETED';
 export const GET_POSTS_FAILED = 'GET_POSTS_FAILED';
 export const GET_POSTS = 'GET_POSTS';
 
-interface GetPostsAction {
-    type: typeof GET_POSTS
+export interface AppAction extends Action {
+    payload?: any;
 }
 
-interface SendMessageAction {
-    type: typeof ADD_POST_COMPLETED
-    payload: Post
+interface GetPostsAction {
+    type: typeof GET_POSTS
 }
 
 interface GetPostsCompletedAction {
@@ -35,9 +38,27 @@ interface GetPostsFailedAction {
     payload: string
 }
 
+interface AddPostAction {
+    type: typeof ADD_POST
+    payload: Post
+}
+
+interface AddPostCompletedAction {
+    type: typeof ADD_POST_COMPLETED
+    payload: Post
+}
+
+interface AddPostFailedAction {
+    type: typeof ADD_POST_FAILED
+    payload: string
+}
+
 export type PostActionTypes =
     GetPostsAction
-    | SendMessageAction
     | GetPostsCompletedAction
     | GetPostsFailedAction
+    | AddPostAction
+    | AddPostCompletedAction
+    | AddPostFailedAction
+
 
